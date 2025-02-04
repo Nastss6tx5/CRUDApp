@@ -1,7 +1,6 @@
 package crudapp.crudApp.service;
 
 import crudapp.crudApp.model.User;
-
 import java.util.List;
 
 public interface UserService {

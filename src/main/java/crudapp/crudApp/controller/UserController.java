@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import crudapp.crudApp.service.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -29,7 +33,8 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(required = false) Integer userId, Model model) {
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result,
+                           @RequestParam(required = false) Integer userId, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("user", user);
             if (userId != null) {

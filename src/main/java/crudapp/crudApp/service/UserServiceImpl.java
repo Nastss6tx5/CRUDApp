@@ -4,9 +4,7 @@ import crudapp.crudApp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import crudapp.crudApp.repository.UserRepository;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,14 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(int id) {
-        Optional<User> optional = userRepository.findById(id);
-        User user = null;
-        if (optional.isPresent()) {
-            user = optional.get();
-        } else {
-            throw new RuntimeException("User not found by id::" + id);
-        }
-        return user;
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User Not Found"));
     }
 
     @Override
